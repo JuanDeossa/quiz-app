@@ -4,8 +4,8 @@ import "./style/index.css";
 export const HomePage = (props) => {
   return (
     <div>
-      <Button text="Professor" />
-      <Button text="Student" />
+      <Button text="Professor" route="/P" />
+      <Button text="Student" route="/S" />
     </div>
   );
 };

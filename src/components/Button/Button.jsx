@@ -1,10 +1,13 @@
 
+import { useNavigate } from 'react-router-dom';
 import './style/index.css';
 
 export const Button = (props) => {
-    const {text}=props
+    const navigate=useNavigate()
+    const {text,route}=props
+    const handleRoute=(hash)=>navigate(hash)
     return (
-        <button>{text||"DefaultText"}</button>
+        <button onClick={()=>handleRoute(route)}>{text||"DefaultText"}</button>
     );
 };
 

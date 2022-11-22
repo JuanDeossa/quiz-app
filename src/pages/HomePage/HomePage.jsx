@@ -5,7 +5,7 @@ export const HomePage = (props) => {
   return (
     <div>
       <Button text="Professor" route="/P" />
-      <Button text="Student" route="/S" />
+      <Button text="Student" route="/quizsettings" />
     </div>
   );
 };

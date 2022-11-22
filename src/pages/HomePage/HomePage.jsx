@@ -3,9 +3,9 @@ import "./style/index.css";
 
 export const HomePage = (props) => {
   return (
-    <>
-      <Button text="Proffesor" />
+    <div>
+      <Button text="Professor" />
       <Button text="Student" />
-    </>
+    </div>
   );
 };

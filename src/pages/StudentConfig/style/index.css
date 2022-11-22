@@ -1,0 +1,23 @@
+label{
+    color: #fff;
+    font-size: 30rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.option-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+select{
+    border-radius: 5px;
+    color: rgb(17, 17, 17);
+    font-size: 18rem;
+    padding: 3px 10px;
+}

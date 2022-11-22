@@ -1,10 +1,10 @@
 import './App.css'
-import { Button } from './components/Button/Button'
+import { HomePage } from './pages/HomePage/HomePage'
 
 export function App() {
   return (
     <div className="App">
-      <Button text="Student"/>
+      <HomePage/>
     </div>
   )
 }

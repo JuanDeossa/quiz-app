@@ -1,0 +1,19 @@
+button {
+    min-height: 50px;
+    min-width: 130px;
+    color: rgb(219, 213, 213);
+    font-size: 20px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-weight: 700;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: font-size 0.25s;
+  }
+  button:hover {
+    font-size: 22px
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }

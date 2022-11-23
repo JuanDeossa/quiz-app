@@ -1,0 +1,18 @@
+.option-container{
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+select{
+  min-width: 200px;
+  max-width: 70%;
+  text-align: center;
+  border-radius: 5px;
+  color: rgb(17, 17, 17);
+  font-size: 18rem;
+  font-weight: 600;
+  padding: 3px 10px;
+}

@@ -5,12 +5,14 @@ import { TemplateComp } from "../../components/TemplateComp/TemplateComp";
 import { getCategoriesFromApi,difficulties,types,} from "../../services/getOptions";
 import "./style/index.css";
 import { getQuizURl } from "../../services/getQuizURL";
+import { useNavigate } from "react-router-dom";
 
-export const StudentConfig = (props) => {
+export const StudentConfigPage = (props) => {
   const [categories, setCategories] = useState([1, 2, 3]);
   const difficulties_=Object.values(difficulties)
   const types_=Object.values(types)
   const form=useRef(null)
+  const navigate=useNavigate()
 
   const handleSubmit=()=>{
     const formData=new FormData(form.current)
@@ -20,7 +22,10 @@ export const StudentConfig = (props) => {
         type:formData.get('Type'),
     }
     const url=getQuizURl(optionsSelected)
-    console.log(url)
+    navigate(
+      '/question',
+      {state:{url:url}}
+    )
   }
 
   useEffect(() => {

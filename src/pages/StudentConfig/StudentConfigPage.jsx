@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { SubmitButton } from "../../components/SubmitButton/SubmitButton";
 import { DropDown } from "../../components/DropDown/DropDown";
 import { TemplateComp } from "../../components/TemplateComp/TemplateComp";
-import { getCategoriesFromApi,difficulties,types,} from "../../services/getOptions";
+import { getCategoriesFromApi,difficulties} from "../../services/getOptions";
 import "./style/index.css";
 import { getQuizURl } from "../../services/getQuizURL";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 export const StudentConfigPage = (props) => {
   const [categories, setCategories] = useState([1, 2, 3]);
   const difficulties_=Object.values(difficulties)
-  const types_=Object.values(types)
+  // const types_=Object.values(types)
   const form=useRef(null)
   const navigate=useNavigate()
 
@@ -41,7 +41,6 @@ export const StudentConfigPage = (props) => {
       <form action="/" ref={form}>
         <DropDown title="Category" dataArray={categories}/>
         <DropDown title="Difficulty" dataArray={difficulties_}/>
-        <DropDown title="Type" dataArray={types_}/>
       </form>
       <SubmitButton text="Start Quiz" action={handleSubmit}/>
     </div>

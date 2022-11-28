@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { QuestionForm } from "../../components/QuestionForm/QuestionForm";
 import { getQuestionFromApi } from "../../services/getQuestion";
 import "./style/index.css";
 
@@ -17,7 +18,7 @@ export const QuestionPage = () => {
 
   return (
     <div>
-      {JSON.stringify(questions)}
+      <QuestionForm questions={questions}/>
     </div>
   );
 };

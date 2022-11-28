@@ -1,0 +1,19 @@
+.questions-amount__title{
+    font-size: 30px;
+    color: rgb(190, 188, 192);
+    margin: 0;
+}
+.questions-amount__container{
+    height: 70px;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.amount-btn{
+    min-width: 40px;
+    min-height: 40px;
+    background-color: rgb(54, 54, 54);
+}
+

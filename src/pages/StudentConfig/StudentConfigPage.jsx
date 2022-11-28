@@ -6,11 +6,12 @@ import { getCategoriesFromApi,difficulties} from "../../services/getOptions";
 import "./style/index.css";
 import { getQuizURl } from "../../services/getQuizURL";
 import { useNavigate } from "react-router-dom";
+import { QuestionsAmountSelector } from "../../components/QuestionsAmountSelector/QuestionsAmountSelector";
 
 export const StudentConfigPage = (props) => {
   const [categories, setCategories] = useState([1, 2, 3]);
+  const [amount,setAmount]= useState(1)
   const difficulties_=Object.values(difficulties)
-  // const types_=Object.values(types)
   const form=useRef(null)
   const navigate=useNavigate()
 
@@ -19,13 +20,17 @@ export const StudentConfigPage = (props) => {
     const optionsSelected={
         categoryID:formData.get('Category'),
         difficulty:formData.get('Difficulty'),
-        type:formData.get('Type'),
+        amount:amount,
     }
     const url=getQuizURl(optionsSelected)
     navigate(
       '/question',
       {state:{url:url}}
     )
+  }
+
+  const handleAmount=(value)=>{
+    setAmount(value)
   }
 
   useEffect(() => {
@@ -41,6 +46,7 @@ export const StudentConfigPage = (props) => {
       <form action="/" ref={form}>
         <DropDown title="Category" dataArray={categories}/>
         <DropDown title="Difficulty" dataArray={difficulties_}/>
+        <QuestionsAmountSelector setAmount={handleAmount}/>
       </form>
       <SubmitButton text="Start Quiz" action={handleSubmit}/>
     </div>

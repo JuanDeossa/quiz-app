@@ -16,3 +16,8 @@ select{
   font-weight: 600;
   padding: 3px 10px;
 }
+
+.option__label{
+  color: #fff;
+  font-size: 30rem;
+}

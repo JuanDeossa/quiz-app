@@ -41,7 +41,23 @@ form {
   flex-direction: row;
   justify-content: space-between;
 }
+.right {
+  background-color: rgb(14, 135, 78);
+}
+.wrong {
+  background-color: rgb(201, 23, 16);
+}
 
 p {
   margin: 0;
+}
+
+input[type="radio"][disabled]{
+  opacity: 0.4;
+  appearance: auto;
+}
+input[type="radio"][disabled]:checked{
+  transform: scale(1.3);
+  opacity: 1;
+  appearance: auto;
 }

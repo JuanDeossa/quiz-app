@@ -10,9 +10,8 @@ export const QuestionPage = () => {
   const url = location.state.url;
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
-  const [answersComparison, setAnswersComparison] = useState([]);
   const [score, setscore] = useState(0);
-  const [quizCompleted,setQuizCompleted]=useState(false)
+  const [quizCompleted, setQuizCompleted] = useState(false);
 
   useEffect(() => {
     const setData = (async () => {
@@ -20,39 +19,29 @@ export const QuestionPage = () => {
       const questionsObtained = await getQuestionFromApi(url);
       const questionsUpdated = await getRandomQuestionsArray(questionsObtained);
       setQuestions(questionsUpdated);
-      setAnswersComparison(
-        questionsUpdated.map((question, index) => ({
-          id: index,
-          correctAnswer: decode(question.correct_answer),
-          answerSelected: null,
-          answered: false,
-        }))
-      );
       setLoading(false);
     })();
   }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(answersComparison);
-    const results=answersComparison.map(question=>{
-      const questionsNumber=answersComparison.length
-      if (question.answerSelected===question.correctAnswer) {
-        return Number((1/questionsNumber*100).toFixed(0))
-      }else{
-        return 0
+    e.preventDefault();
+    const results = questions.map((question) => {
+      const questionsNumber = questions.length;
+      if (question.answerSelected === question.correctAnswer) {
+        return Number(((1 / questionsNumber) * 100).toFixed(0));
+      } else {
+        return 0;
       }
-    })
-    const total=results.reduce((a,b)=>(a+b),0)
-    console.log(results);
-    setscore(total)
-    setQuizCompleted(true)
-  }
+    });
+    const total = results.reduce((a, b) => a + b, 0);
+    setscore(total);
+    setQuizCompleted(true);
+  };
 
   const handleAnswer = (e) => {
     const questionId = Number(e.target.id[0]);
     const value = decode(e.target.value);
-    const newArray = answersComparison.map((question) => {
+    const newArray = questions.map((question) => {
       if (question.id == questionId) {
         return {
           ...question,
@@ -60,12 +49,12 @@ export const QuestionPage = () => {
           answered: true,
         };
       } else {
-        return question
+        return question;
       }
     });
-    setAnswersComparison(newArray);
+    setQuestions(newArray);
   };
-
+  console.log(questions);
   return (
     <>
       {loading ? (
@@ -74,20 +63,22 @@ export const QuestionPage = () => {
         <div className="questions-container">
           <h2>Questions</h2>
           <form action="">
-            {(quizCompleted)&&<p>Score: {score}/100</p>}
-            <button disabled={quizCompleted} onClick={handleSubmit}>Send</button>
             {questions.map((question, index1) => (
               <div key={index1} className="question-container">
                 <h3>{question.question}</h3>
                 {question.allAnswers.map((answer, index2) => (
-                  <div key={index2} className={`answer-contanier`}>
+                  <div
+                    key={index2}
+                    className={`answer-contanier ${
+                      !quizCompleted ? "" : answer.isCorrect ? "right" : "wrong"
+                    }`}
+                  >
                     <label htmlFor={`${index1}${index2}`}>
                       {answer.answer}
                     </label>
                     <input
                       type="radio"
                       value={answer.answer}
-                      checked={null}
                       onChange={handleAnswer}
                       name={index1}
                       id={`${index1}${index2}`}
@@ -97,7 +88,12 @@ export const QuestionPage = () => {
                 ))}
               </div>
             ))}
+            {quizCompleted && <p>Score: {score}/100</p>}
+            <button disabled={quizCompleted} onClick={handleSubmit}>
+              Send
+            </button>
           </form>
+          {quizCompleted ? null : quizCompleted ? null : null}
         </div>
       )}
     </>

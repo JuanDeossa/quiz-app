@@ -65,7 +65,7 @@ export const QuestionPage = () => {
           <form action="">
             {questions.map((question, index1) => (
               <div key={index1} className="question-container">
-                <h3>{question.question}</h3>
+                <h3 className="question">{question.question}</h3>
                 {question.allAnswers.map((answer, index2) => (
                   <div
                     key={index2}

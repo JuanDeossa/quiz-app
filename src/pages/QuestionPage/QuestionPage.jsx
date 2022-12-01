@@ -5,6 +5,7 @@ import { getQuestionFromApi } from "../../services/getQuestion";
 import { getRandomQuestionsArray } from "../../services/getRandomQuestionsArray";
 import { decode } from "html-entities";
 import { DataContext } from "../../context/DataContext";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 export const QuestionPage = () => {
   const { questionsStarted, setQuestionsStarted } = useContext(DataContext);
@@ -12,10 +13,16 @@ export const QuestionPage = () => {
   const location = useLocation();
   const url = location?.state?.url;
   const [loading, setLoading] = useState(false);
-  const [questions, setQuestions] = useState([]);
-  const [score, setscore] = useState(0);
-  const [quizCompleted, setQuizCompleted] = useState(false);
-  const [emptyAnswers, setEmptyAnswers] = useState(false);
+  const [questions, setQuestions] = useLocalStorage("questions", []);
+  const [score, setscore] = useLocalStorage("score", 0);
+  const [quizCompleted, setQuizCompleted] = useLocalStorage(
+    "quizCompleted",
+    false
+  );
+  const [emptyAnswers, setEmptyAnswers] = useLocalStorage(
+    "emptyAnswers",
+    false
+  );
   //Redirection to settings
   if (
     !questionsStarted &&
@@ -27,9 +34,14 @@ export const QuestionPage = () => {
   useEffect(() => {
     const setData = (async () => {
       setLoading(true);
-      const questionsObtained = await getQuestionFromApi(url);
-      const questionsUpdated = await getRandomQuestionsArray(questionsObtained);
-      setQuestions(questionsUpdated);
+      console.log(questions);
+      if (!questions.length) {
+        const questionsObtained = await getQuestionFromApi(url);
+        const questionsUpdated = await getRandomQuestionsArray(
+          questionsObtained
+        );
+        setQuestions(questionsUpdated);
+      }
       setLoading(false);
     })();
   }, []);
@@ -79,6 +91,7 @@ export const QuestionPage = () => {
   const handleExit = () => {
     setQuestionsStarted(false);
     setQuizCompleted(false);
+    setQuestions([]);
     navigate("/");
   };
 

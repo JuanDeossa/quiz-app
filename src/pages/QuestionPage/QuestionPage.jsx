@@ -1,18 +1,23 @@
 import "./style/index.css";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 import { getQuestionFromApi } from "../../services/getQuestion";
 import { getRandomQuestionsArray } from "../../services/getRandomQuestionsArray";
 import { decode } from "html-entities";
+import { DataContext } from "../../context/DataContext";
+import { Button } from "../../components/Button/Button";
 
 export const QuestionPage = () => {
+  const { questionsStarted } = useContext(DataContext);
   const location = useLocation();
-  const url = location.state.url;
+  const url = location?.state?.url;
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [score, setscore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
-
+  if (!questionsStarted && !quizCompleted) {
+    return <Navigate to={"/quizsettings"} />;
+  }
   useEffect(() => {
     const setData = (async () => {
       setLoading(true);
@@ -62,7 +67,7 @@ export const QuestionPage = () => {
       ) : (
         <div className="questions-container">
           <h2>Questions</h2>
-          <form action="">
+          <div>
             {questions.map((question, index1) => (
               <div key={index1} className="question-container">
                 <h3 className="question">{question.question}</h3>
@@ -89,11 +94,14 @@ export const QuestionPage = () => {
               </div>
             ))}
             {quizCompleted && <p>Score: {score}/100</p>}
-            <button disabled={quizCompleted} onClick={handleSubmit}>
-              Send
-            </button>
-          </form>
-          {quizCompleted ? null : quizCompleted ? null : null}
+            {!quizCompleted ? (
+              <button disabled={quizCompleted} onClick={handleSubmit}>
+                Send
+              </button>
+            ) : (
+              <Button text="Go Home" route="/" />
+            )}
+          </div>
         </div>
       )}
     </>

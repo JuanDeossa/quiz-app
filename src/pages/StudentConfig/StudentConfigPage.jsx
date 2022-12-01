@@ -1,5 +1,5 @@
 import "./style/index.css";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { SubmitButton } from "../../components/SubmitButton/SubmitButton";
 import { DropDown } from "../../components/DropDown/DropDown";
 import { TemplateComp } from "../../components/TemplateComp/TemplateComp";
@@ -7,14 +7,17 @@ import { getCategoriesFromApi, difficulties } from "../../services/getOptions";
 import { getQuizURl } from "../../services/getQuizURL";
 import { useNavigate } from "react-router-dom";
 import { QuestionsAmountSelector } from "../../components/QuestionsAmountSelector/QuestionsAmountSelector";
+import { DataContext } from "../../context/DataContext";
 
-export const StudentConfigPage = (props) => {
+export const StudentConfigPage = () => {
   const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState(1);
   const difficulties_ = Object.values(difficulties);
 
   const form = useRef(null);
   const navigate = useNavigate();
+  const {setQuestionsStarted} = useContext(DataContext)
+
   const handleSubmit = () => {
     const formData = new FormData(form.current);
     const optionsSelected = {
@@ -24,6 +27,7 @@ export const StudentConfigPage = (props) => {
     };
     const url = getQuizURl(optionsSelected);
     navigate("/question", { state: { url: url } });
+    setQuestionsStarted(true)
   };
 
   const handleAmount = (value) => {

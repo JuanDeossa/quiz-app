@@ -15,6 +15,7 @@ export const QuestionPage = () => {
   const [questions, setQuestions] = useState([]);
   const [score, setscore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [emptyAnswers, setEmptyAnswers] = useState(false);
   //Redirection to settings
   if (
     !questionsStarted &&
@@ -33,19 +34,29 @@ export const QuestionPage = () => {
     })();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const results = questions.map((question) => {
-      const questionsNumber = questions.length;
-      if (question.answerSelected === question.correctAnswer) {
-        return Number(((1 / questionsNumber) * 100).toFixed(0));
-      } else {
-        return 0;
-      }
-    });
-    const total = results.reduce((a, b) => a + b, 0);
-    setscore(total);
-    setQuizCompleted(true);
+    const someEmptyAnswer = questions.some(
+      (question) => !question.answerSelected
+    );
+    if (someEmptyAnswer) {
+      await setEmptyAnswers(true);
+      window.scrollTo(0, document.body.scrollHeight);
+    } else {
+      const results = questions.map((question) => {
+        const questionsNumber = questions.length;
+        if (question.answerSelected === question.correctAnswer) {
+          return Number(((1 / questionsNumber) * 100).toFixed(0));
+        } else {
+          return 0;
+        }
+      });
+      const total = results.reduce((a, b) => a + b, 0);
+      await setscore(total);
+      await setQuizCompleted(true);
+      await setEmptyAnswers(false);
+      window.scrollTo(0, document.body.scrollHeight);
+    }
   };
 
   const handleAnswer = (e) => {
@@ -111,6 +122,11 @@ export const QuestionPage = () => {
               </button>
             ) : (
               <button onClick={handleExit}>Go Home</button>
+            )}
+            {emptyAnswers && (
+              <p className="empty-answers-text">
+                All questions checking required
+              </p>
             )}
           </div>
         </div>

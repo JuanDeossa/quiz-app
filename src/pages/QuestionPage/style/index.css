@@ -61,3 +61,7 @@ input[type="radio"][disabled]:checked{
   opacity: 1;
   appearance: auto;
 }
+.empty-answers-text{
+  font-size: 20px;
+  color: rgb(201, 23, 16);;
+}

@@ -20,6 +20,7 @@ export const QuestionPage = () => {
     false
   );
   const [studentName, setStudentName] = useLocalStorage("studentName",null)
+  const [studentsDB, setStudentsDB] = useLocalStorage("studentsDB", []);
   const [emptyAnswers, setEmptyAnswers] = useLocalStorage(
     "emptyAnswers",
     false
@@ -68,6 +69,12 @@ export const QuestionPage = () => {
       await setscore(total);
       await setQuizCompleted(true);
       await setEmptyAnswers(false);
+
+      await setStudentsDB([
+        ...studentsDB,
+        {name:studentName,score:total,aproved:total>=60}
+      ])
+
       window.scrollTo(0, document.body.scrollHeight);
     }
   };

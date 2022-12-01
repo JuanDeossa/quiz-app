@@ -14,6 +14,7 @@ export const StudentConfigPage = () => {
   const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState(1);
   const [studentName, setStudentName] = useLocalStorage("studentName",null)
+  const [studentsDB, setStudentsDB] = useLocalStorage("studentsDB", []);
   const difficulties_ = Object.values(difficulties);
 
   const form = useRef(null);
@@ -23,8 +24,12 @@ export const StudentConfigPage = () => {
 
   const handleSubmit = () => {
     const formData = new FormData(form.current);
-    if (!formData.get("name")) {
+    const name=formData.get("name")
+    const userExists=studentsDB.some(student=>student.name===name)
+    if (!name) {
       alert("name required")
+    }else if(userExists){
+      alert("you already answered the test")
     } else {
       const categoryID= formData.get("Category")
       const difficulty= formData.get("Difficulty")

@@ -6,6 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 export const StudentsTable = (props) => {
   const { dataBase } = props || [];
@@ -24,6 +25,7 @@ export const StudentsTable = (props) => {
               <TableCell className="table-label" align="left">
                 Aproved
               </TableCell>
+              <TableCell className="table-label" align="left"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -47,6 +49,9 @@ export const StudentsTable = (props) => {
                       align="center"
                     >
                       {row?.aproved ? "Yes" : "No"}
+                    </TableCell>
+                    <TableCell className="table-data" align="center">
+                      <RiDeleteBin6Line className="delete-icon" />
                     </TableCell>
                   </TableRow>
                 ))}

@@ -36,7 +36,6 @@ export const QuestionPage = () => {
   useEffect(() => {
     const setData = (async () => {
       setLoading(true);
-      console.log(questions);
       if (!questions.length) {
         const questionsObtained = await getQuestionFromApi(url);
         const questionsUpdated = await getRandomQuestionsArray(

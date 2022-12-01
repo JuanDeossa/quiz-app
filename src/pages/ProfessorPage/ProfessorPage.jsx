@@ -9,11 +9,11 @@ import "./style/index.css";
 // ];
 
 export const ProfessorPage = (props) => {
-  const [studentsDB, setStudentsDB] = useLocalStorage("studentsDB", []);
+  // const [studentsDB, setStudentsDB] = useLocalStorage("studentsDB", []);
   return (
     <div className="professor-page">
       <h3>ProfessorPage</h3>
-      <StudentsTable dataBase={studentsDB} />
+      <StudentsTable  />
     </div>
   );
 };

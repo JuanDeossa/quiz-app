@@ -7,9 +7,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
-export const StudentsTable = (props) => {
-  const { dataBase } = props || [];
+export const StudentsTable = () => {
+  const [studentsDB, setStudentsDB] = useLocalStorage("studentsDB", []);
+  const deleteRow = (name) => {
+    const newStudentsArray=studentsDB.filter(student=>student.name!==name);
+    setStudentsDB(newStudentsArray)
+  };
   return (
     <div className="table-container">
       <TableContainer component={Paper}>
@@ -29,9 +34,9 @@ export const StudentsTable = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {!dataBase.length
+            {!studentsDB.length
               ? null
-              : dataBase.map((row, i) => (
+              : studentsDB.map((row, i) => (
                   <TableRow
                     key={i}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -51,7 +56,9 @@ export const StudentsTable = (props) => {
                       {row?.aproved ? "Yes" : "No"}
                     </TableCell>
                     <TableCell className="table-data" align="center">
-                      <RiDeleteBin6Line className="delete-icon" />
+                      <div id={row.name} onClick={() => deleteRow(row.name)}>
+                        <RiDeleteBin6Line className="delete-icon" />
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}

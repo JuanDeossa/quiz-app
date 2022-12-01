@@ -8,10 +8,12 @@ import { getQuizURl } from "../../services/getQuizURL";
 import { useLocation, useNavigate } from "react-router-dom";
 import { QuestionsAmountSelector } from "../../components/QuestionsAmountSelector/QuestionsAmountSelector";
 import { DataContext } from "../../context/DataContext";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 export const StudentConfigPage = () => {
   const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState(1);
+  const [studentName, setStudentName] = useLocalStorage("studentName",null)
   const difficulties_ = Object.values(difficulties);
 
   const form = useRef(null);
@@ -21,14 +23,23 @@ export const StudentConfigPage = () => {
 
   const handleSubmit = () => {
     const formData = new FormData(form.current);
-    const optionsSelected = {
-      categoryID: formData.get("Category"),
-      difficulty: formData.get("Difficulty"),
-      amount: amount,
-    };
-    const url = getQuizURl(optionsSelected);
-    navigate("/question", { state: { url: url,previousPath:location.pathname } });
-    setQuestionsStarted(true)
+    if (!formData.get("name")) {
+      alert("name required")
+    } else {
+      const categoryID= formData.get("Category")
+      const difficulty= formData.get("Difficulty")
+      const name=formData.get("name")
+      const optionsSelected = {
+        categoryID,
+        difficulty,
+        name,
+        amount,
+      };
+      const url = getQuizURl(optionsSelected);
+      setStudentName(name)
+      navigate("/question", { state: { url: url,previousPath:location.pathname } });
+      setQuestionsStarted(true)
+    }
   };
 
   const handleAmount = (value) => {
@@ -49,6 +60,7 @@ export const StudentConfigPage = () => {
         <DropDown title="Category" dataArray={categories} />
         <DropDown title="Difficulty" dataArray={difficulties_} />
         <QuestionsAmountSelector setAmount={handleAmount} />
+        <input type="text" name="name" placeholder="Who are you ?" />
       </form>
       <SubmitButton text="Start Quiz" action={handleSubmit} />
     </div>

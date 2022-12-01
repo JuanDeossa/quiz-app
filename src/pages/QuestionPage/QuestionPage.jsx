@@ -19,6 +19,7 @@ export const QuestionPage = () => {
     "quizCompleted",
     false
   );
+  const [studentName, setStudentName] = useLocalStorage("studentName",null)
   const [emptyAnswers, setEmptyAnswers] = useLocalStorage(
     "emptyAnswers",
     false
@@ -92,6 +93,7 @@ export const QuestionPage = () => {
     setQuestionsStarted(false);
     setQuizCompleted(false);
     setQuestions([]);
+    setStudentName(null)
     navigate("/");
   };
 

@@ -1,5 +1,5 @@
 body {
-  color: #fff;
+  color: rgb(94, 94, 94);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,13 +17,12 @@ label {
   font-size: 20px;
   text-align: left;
 }
-.questions-container {
-    gap: 10px;
-}
 .question-container {
+  gap: 20px;
   width: 90%;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 30px;
   border-radius: 20px;
   border: 1px solid white;
 }
@@ -33,13 +32,14 @@ form {
   gap: 20px;
 }
 .answer-contanier {
-  width: 95%;
+  width: 100%;
   border: 1px solid white;
   border-radius: 10px;
   padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 .right {
   background-color: rgb(14, 135, 78);
@@ -64,4 +64,13 @@ input[type="radio"][disabled]:checked{
 .empty-answers-text{
   font-size: 20px;
   color: rgb(201, 23, 16);;
+}
+.answer-state-container{
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+}
+.answer-state-container>svg{
+  width: 30px;
+  height: 30px;
 }

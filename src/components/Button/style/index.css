@@ -1,19 +1,22 @@
-button {
-    min-height: 50px;
-    min-width: 130px;
-    color: rgb(219, 213, 213);
-    font-size: 20px;
-    border-radius: 8px;
-    border: 1px solid transparent;
-    font-weight: 700;
-    background-color: #1a1a1a;
-    cursor: pointer;
+.standar-button {
+  min-height: 50px;
+  min-width: 130px;
+  color: var(--fontColor2);
+  font-size: 20px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  background-color: var(--backgroundColor2);
+  cursor: pointer;
+}
+.standar-button:focus,
+.standar-button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (min-width: 768px) {
+  .standar-button:hover {
     transition: font-size 0.25s;
+    font-size: 22px;
   }
-  button:hover {
-    font-size: 22px
-  }
-  button:focus,
-  button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
+}

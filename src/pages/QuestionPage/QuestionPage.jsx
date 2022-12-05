@@ -19,7 +19,7 @@ export const QuestionPage = () => {
     "quizCompleted",
     false
   );
-  const [studentName, setStudentName] = useLocalStorage("studentName",null)
+  const [studentName, setStudentName] = useLocalStorage("studentName", null);
   const [studentsDB, setStudentsDB] = useLocalStorage("studentsDB", []);
   const [emptyAnswers, setEmptyAnswers] = useLocalStorage(
     "emptyAnswers",
@@ -71,8 +71,8 @@ export const QuestionPage = () => {
 
       await setStudentsDB([
         ...studentsDB,
-        {name:studentName,score:total,aproved:total>=60}
-      ])
+        { name: studentName, score: total, aproved: total >= 60 },
+      ]);
 
       window.scrollTo(0, document.body.scrollHeight);
     }
@@ -99,10 +99,12 @@ export const QuestionPage = () => {
     setQuestionsStarted(false);
     setQuizCompleted(false);
     setQuestions([]);
-    setStudentName(null)
+    setStudentName(null);
     navigate("/");
   };
-
+  if (questions.length) {
+    console.log(questions);
+  }
   return (
     <>
       {loading ? (

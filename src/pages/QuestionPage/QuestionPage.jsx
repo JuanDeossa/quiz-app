@@ -6,6 +6,10 @@ import { getRandomQuestionsArray } from "../../services/getRandomQuestionsArray"
 import { decode } from "html-entities";
 import { DataContext } from "../../context/DataContext";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import {
+  IoIosCheckmarkCircleOutline,
+  IoIosCloseCircleOutline,
+} from "react-icons/io";
 
 export const QuestionPage = () => {
   const { questionsStarted, setQuestionsStarted } = useContext(DataContext);
@@ -117,9 +121,9 @@ export const QuestionPage = () => {
     setStudentName(null);
     navigate("/");
   };
-  if (questions.length) {
-    console.log(questions);
-  }
+  // if (questions.length) {
+  //   console.log(questions);
+  // }
   return (
     <>
       {loading ? (
@@ -141,15 +145,26 @@ export const QuestionPage = () => {
                     <label htmlFor={`${index1}${index2}`}>
                       {answer.answer}
                     </label>
-                    <input
-                      type="radio"
-                      value={answer.answer}
-                      onChange={handleAnswer}
-                      name={index1}
-                      id={`${index1}${index2}`}
-                      disabled={quizCompleted}
-                      checked={answer.isChecked}
-                    />
+                    <div className="answer-state-container">
+                      {quizCompleted ? null : (
+                        <input
+                          type="radio"
+                          value={answer.answer}
+                          onChange={handleAnswer}
+                          name={index1}
+                          id={`${index1}${index2}`}
+                          disabled={quizCompleted}
+                          checked={answer.isChecked}
+                        />
+                      )}
+
+                      {!quizCompleted ? null : answer.isCorrect &&
+                        answer.isChecked ? (
+                        <IoIosCheckmarkCircleOutline />
+                      ) : (
+                        <IoIosCloseCircleOutline />
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

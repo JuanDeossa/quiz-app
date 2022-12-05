@@ -87,6 +87,21 @@ export const QuestionPage = () => {
           ...question,
           answerSelected: value,
           answered: true,
+          allAnswers: [
+            ...question.allAnswers.map((answer) => {
+              if (answer.answer === value) {
+                return {
+                  ...answer,
+                  isChecked: true,
+                };
+              } else {
+                return {
+                  ...answer,
+                  isChecked: false,
+                };
+              }
+            }),
+          ],
         };
       } else {
         return question;
@@ -133,6 +148,7 @@ export const QuestionPage = () => {
                       name={index1}
                       id={`${index1}${index2}`}
                       disabled={quizCompleted}
+                      checked={answer.isChecked}
                     />
                   </div>
                 ))}

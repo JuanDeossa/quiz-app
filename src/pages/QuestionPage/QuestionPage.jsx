@@ -52,6 +52,10 @@ export const QuestionPage = () => {
   }, []);
 
   const handleSubmit = async (e) => {
+    let answers;
+    let anwerSelected;
+    let difficulty;
+    let category;
     e.preventDefault();
     const someEmptyAnswer = questions.some(
       (question) => !question.answerSelected
@@ -62,7 +66,10 @@ export const QuestionPage = () => {
     } else {
       const results = questions.map((question) => {
         const questionsNumber = questions.length;
-        // console.log(question);
+        answers = question?.allAnswers;
+        anwerSelected = question?.answerSelected;
+        difficulty = question?.difficulty;
+        category = question?.category;
         if (question.answerSelected === question.correctAnswer) {
           return Number(((1 / questionsNumber) * 100).toFixed(0));
         } else {
@@ -76,7 +83,16 @@ export const QuestionPage = () => {
 
       await setStudentsDB([
         ...studentsDB,
-        { name: studentName, score: total, aproved: total >= 60 },
+        {
+          name: studentName,
+          score: total,
+          aproved: total >= 60,
+          answers,
+          anwerSelected,
+          difficulty,
+          category,
+          questions,
+        },
       ]);
 
       window.scrollTo(0, document.body.scrollHeight);

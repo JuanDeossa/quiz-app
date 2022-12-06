@@ -20,8 +20,11 @@ export const StudentsTable = () => {
   };
 
   const showRowDetails = (name) => {
-    console.log(studentsDB);
     console.log(name);
+    const {difficulty,category,questions} = studentsDB.find((student) => student.name === name);
+    console.log(difficulty);
+    console.log(category);
+    console.log(questions?.length);
   };
 
   const cellStyles = {

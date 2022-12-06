@@ -62,6 +62,7 @@ export const QuestionPage = () => {
     } else {
       const results = questions.map((question) => {
         const questionsNumber = questions.length;
+        // console.log(question);
         if (question.answerSelected === question.correctAnswer) {
           return Number(((1 / questionsNumber) * 100).toFixed(0));
         } else {

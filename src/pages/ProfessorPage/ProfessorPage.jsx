@@ -5,7 +5,7 @@ export const ProfessorPage = () => {
   return (
     <div className="professor-page">
       <div className="students-table">
-        <h3>Students</h3>
+        <h3>Students info</h3>
         <StudentsTable />
       </div>
     </div>

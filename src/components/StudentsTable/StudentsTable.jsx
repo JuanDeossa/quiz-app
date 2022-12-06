@@ -27,7 +27,7 @@ export const StudentsTable = () => {
   const cellStyles = {
     label: {
       padding: {
-        xs: "10px 0px 10px 10px",
+        xs: "20px 0px 20px 10px",
         sm: "10px 10px",
       },
       fontSize: {

@@ -1,4 +1,4 @@
-.table-container {
+/* .table-container {
   display: grid;
   place-items: center;
 }
@@ -9,8 +9,9 @@
 .table-data {
   font-size: 10px !important;
 }
+*/
 .table-data.state {
-  font-size: 13px !important;
+  font-size: 16px !important;
   font-weight: 900;
 }
 .table-data.yes {
@@ -19,17 +20,18 @@
 .table-data.no {
   color: #a21111;
 }
-.empty-students {
-  width: 300%;
-  font-size: 15px !important;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.delete-icon {
+
+.delete-icon,
+.details-icon {
   width: 20px;
   height: 20px;
 }
-.delete-icon:hover {
+
+@media (min-width: 768px) {
+  .delete-icon:hover {
     color: #a21111;
+  }
+  .details-icon:hover {
+    color: #0631b3;
+  }
 }

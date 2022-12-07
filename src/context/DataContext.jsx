@@ -5,6 +5,7 @@ export const DataContext = createContext()
 export const DataProvider = ({children}) => {
 
   const [questionsStarted, setQuestionsStarted] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   return (
     <DataContext.Provider
@@ -12,6 +13,8 @@ export const DataProvider = ({children}) => {
         {
           questionsStarted,
           setQuestionsStarted,
+          loading,
+          setLoading
         }
       }
     >

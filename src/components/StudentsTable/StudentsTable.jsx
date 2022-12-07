@@ -8,8 +8,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { RiDeleteBin6Line, RiEyeLine } from "react-icons/ri";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useContext } from "react";
+import { ModalContext } from "../../context/ModalContext";
 
 export const StudentsTable = () => {
+  const { setOpenModal, setData } = useContext(ModalContext);
   const [studentsDB, setStudentsDB] = useLocalStorage("studentsDB", []);
 
   const deleteRow = (name) => {
@@ -20,11 +23,16 @@ export const StudentsTable = () => {
   };
 
   const showRowDetails = (name) => {
-    console.log(name);
-    const {difficulty,category,questions} = studentsDB.find((student) => student.name === name);
-    console.log(difficulty);
-    console.log(category);
-    console.log(questions?.length);
+    setOpenModal((prevState) => !prevState);
+    const { difficulty, category, questions } = studentsDB.find(
+      (student) => student.name === name
+    );
+    setData({
+      name,
+      difficulty,
+      category,
+      questionsNumber: questions?.length,
+    });
   };
 
   const cellStyles = {

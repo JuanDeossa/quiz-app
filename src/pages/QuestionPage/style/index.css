@@ -4,14 +4,14 @@
   background-color: var(--backgroundColor1);
   color: var(--fontColor2);
 }
-.questions-container {
+.questions__container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 25px;
 }
 
-.questions-container > button {
+.questions__container > button {
   min-height: 50px;
   min-width: 130px;
   color: var(--fontColor2);
@@ -22,21 +22,22 @@
   background-color: var(--backgroundColor2);
   cursor: pointer;
 }
-.questions-container > button:focus,
-.questions-container > button:focus-visible {
+.questions__container > button:focus,
+.questions__container > button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (min-width: 768px) {
-  .questions-container > button:hover {
+  .questions__container > button:hover {
     transition: font-size 0.25s;
     font-size: 22px;
   }
 }
 
-.questions-container > h2 {
+.questions__title {
   font-size: 40px;
   text-align: center;
+  margin-bottom: 25px;
 }
 .question-container {
   display: flex;

@@ -36,7 +36,7 @@ export const ValidationModal = () => {
             id="modal-modal-title"
             variant="h4"
             component="h2"
-            color="#161e8a"
+            color="#9b0000"
           >
             {`you already answered the test`}
           </Typography>

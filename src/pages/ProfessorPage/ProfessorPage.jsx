@@ -11,7 +11,7 @@ export const ProfessorPage = () => {
           <Button
             route="/"
             text="&#11013;"
-            styles={{ fontSize: "50px", maxHeight: "40px" }}
+            styles={{ fontSize: "30px", padding:"0px 2px !important"}}
           />
         </div>
         <h3 className="students-table__title">Students info</h3>

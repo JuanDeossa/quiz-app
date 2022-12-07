@@ -12,10 +12,7 @@ import { useContext } from "react";
 import { ModalContext } from "../../context/ModalContext";
 
 export const StudentsTable = () => {
-  // const { setOpenModal, setData } = useContext(ModalContext);
-  const zzz = useContext(ModalContext);
-  console.log(zzz);
-  const { setOpenModal,setData }=zzz
+  const { setOpenModal, setData } = useContext(ModalContext);
   const [studentsDB, setStudentsDB] = useLocalStorage("studentsDB", []);
 
   const deleteRow = (name) => {
@@ -69,8 +66,8 @@ export const StudentsTable = () => {
         component={Paper}
         sx={{
           width: "100% ",
-          borderTopRightRadius:"20px",
-          borderTopLeftRadius:"20px",
+          borderTopRightRadius: "20px",
+          borderTopLeftRadius: "20px",
         }}
       >
         <Table aria-label="simple table">

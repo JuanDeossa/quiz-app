@@ -31,9 +31,10 @@ export const StudentConfigPage = () => {
     const name = formData.get("name");
     const userExists = studentsDB.some((student) => student.name === name);
     if (!name) {
-      // alert("name required");
+      return;
     } else if (userExists) {
       setOpenModal2((prevState) => !prevState);
+      return;
     } else {
       const categoryID = formData.get("Category");
       const difficulty = formData.get("Difficulty");

@@ -31,8 +31,8 @@
   .MuiButton-container{
     /* display: none; */
     top: auto;
-    right: 20px;
-    bottom: -30px;
+    right: 0px;
+    bottom: -60px;
   }
 }
 /*

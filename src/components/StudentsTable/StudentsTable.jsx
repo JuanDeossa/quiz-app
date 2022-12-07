@@ -12,7 +12,10 @@ import { useContext } from "react";
 import { ModalContext } from "../../context/ModalContext";
 
 export const StudentsTable = () => {
-  const { setOpenModal, setData } = useContext(ModalContext);
+  // const { setOpenModal, setData } = useContext(ModalContext);
+  const zzz = useContext(ModalContext);
+  console.log(zzz);
+  const { setOpenModal,setData }=zzz
   const [studentsDB, setStudentsDB] = useLocalStorage("studentsDB", []);
 
   const deleteRow = (name) => {

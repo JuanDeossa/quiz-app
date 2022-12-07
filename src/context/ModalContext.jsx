@@ -4,6 +4,7 @@ export const ModalContext = createContext();
 
 export const ModalProvider = ({ children }) => {
   const [openModal, setOpenModal] = useState(false);
+  const [openModal2, setOpenModal2] = useState(false);
   const [data, setData] = useState({});
 
   return (
@@ -11,6 +12,8 @@ export const ModalProvider = ({ children }) => {
       value={{
         openModal,
         setOpenModal,
+        openModal2,
+        setOpenModal2,
         data,
         setData
       }}

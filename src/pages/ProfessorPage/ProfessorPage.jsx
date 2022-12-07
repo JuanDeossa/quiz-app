@@ -9,6 +9,7 @@ export const ProfessorPage = () => {
       <div className="students-table__container">
         <div className="MuiButton-container">
           <Button
+            backButton={true}
             route="/"
             text="&#11013;"
             styles={{ fontSize: "30px", padding:"0px 2px !important"}}

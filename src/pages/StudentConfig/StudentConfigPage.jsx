@@ -94,9 +94,10 @@ export const StudentConfigPage = () => {
             disabled={loading}
           />
           <Button
+            backButton={true}
             route="/"
             text="&#11013;"
-            styles={{ fontSize: "50px", maxHeight: "40px" }}
+            styles={{ fontSize: "50px" }}
           />
         </>
       </form>

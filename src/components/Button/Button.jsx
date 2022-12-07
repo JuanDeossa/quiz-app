@@ -5,7 +5,7 @@ import { Button as MuiButton } from "@mui/material";
 export const Button = (props) => {
   //Props Destructuring Assignment.
   const {
-    text,
+    text = "ButtonText",
     route = "",
     action = () => {},
     styles = { textTransform: "none" },
@@ -14,16 +14,16 @@ export const Button = (props) => {
   const navigate = useNavigate();
 
   return (
-    <MuiButton
-      className="MuiButton MuiButton_"
-      variant="contained"
-      sx={{ ...styles }}
-      onClick={() => {
-        action();
-        navigate(route);
-      }}
-    >
-      {text}
-    </MuiButton>
+      <MuiButton
+        className="MuiButton MuiButton_"
+        variant="contained"
+        sx={{ ...styles }}
+        onClick={() => {
+          action();
+          navigate(route);
+        }}
+      >
+        {text}
+      </MuiButton>
   );
 };

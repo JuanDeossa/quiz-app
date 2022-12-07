@@ -65,10 +65,9 @@ export const StudentsTable = () => {
       <TableContainer
         component={Paper}
         sx={{
-          width: "95% ",
-          minWidth: "260px ",
-          maxWidth: "550px ",
-          margin: "0 auto",
+          width: "100% ",
+          borderTopRightRadius:"20px",
+          borderTopLeftRadius:"20px",
         }}
       >
         <Table aria-label="simple table">

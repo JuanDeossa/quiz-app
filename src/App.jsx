@@ -14,7 +14,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<TemplateComp text="Not found" />} />
-            <Route path="/professor" element={<ProfessorPage/>} />
+            <Route path="/professor" element={<ProfessorPage />} />
             <Route path="/quizsettings" element={<StudentConfigPage />} />
             <Route path="/question" element={<QuestionPage />} />
             <Route path="results" element={<TemplateComp text="Results" />} />

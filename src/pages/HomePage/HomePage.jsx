@@ -1,5 +1,6 @@
-import { Button } from "../../components/Button/Button";
 import "./style/index.css";
+import { Button } from "../../components/Button/Button";
+import { Stack,} from "@mui/material";
 
 export const HomePage = (props) => {
   return (
@@ -11,8 +12,10 @@ export const HomePage = (props) => {
           alt=""
         />
         <div className="user-container">
-          <Button text="Professor" route="/professor" />
-          <Button text="Student" route="/quizsettings" />
+          <Stack spacing={2} direction="row">
+            <Button text="Professor" route="/professor" />
+            <Button text="Student" route="/quizsettings" />
+          </Stack>
         </div>
       </div>
     </div>

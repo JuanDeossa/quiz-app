@@ -1,7 +1,7 @@
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import { Button as MuiButton } from "@mui/material";
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 export const Button = (props) => {
   //Props Destructuring Assignment.
@@ -9,25 +9,23 @@ export const Button = (props) => {
     text = "",
     route = "",
     action = () => {},
-    styles = { textTransform: "none" },
-    backButton=false,
+    styles = {},
+    backButton = false,
   } = props;
 
   const navigate = useNavigate();
 
   return (
-      <MuiButton
-        className="MuiButton MuiButton_"
-        variant="contained"
-        sx={{ ...styles }}
-        onClick={() => {
-          action();
-          navigate(route);
-        }}
-      >
-        {backButton
-        ?<KeyboardBackspaceIcon/>
-        :text}
-      </MuiButton>
+    <MuiButton
+      className="MuiButton MuiButton_"
+      variant="contained"
+      sx={{ ...styles, textTransform: "none" }}
+      onClick={() => {
+        action();
+        navigate(route);
+      }}
+    >
+      {backButton ? <KeyboardBackspaceIcon /> : text}
+    </MuiButton>
   );
 };

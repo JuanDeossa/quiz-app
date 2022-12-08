@@ -12,7 +12,7 @@ export const ProfessorPage = () => {
             backButton={true}
             route="/"
             text="&#11013;"
-            styles={{ fontSize: "30px", padding:"0px 2px !important"}}
+            styles={{ fontSize: "50px" }}
           />
         </div>
         <h3 className="students-table__title">Students info</h3>

@@ -61,7 +61,6 @@
   flex-direction: row;
   border: 1px solid white;
   border-radius: 10px;
-  padding: 10px;
   justify-content: space-between;
   align-items: center;
 }
@@ -80,9 +79,22 @@
   flex-direction: row;
   gap: 0px;
 }
+.answer-state-container>input {
+  display: none;
+}
+.answer-contanier>label {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+.answer-contanier>label.checked {
+  background-color: #4b5bff
+}
 .answer-state-container > svg {
   width: 30px;
   height: 30px;
+  margin-right: 10px;
 }
 .answer-contanier > label {
   font-size: 20px;

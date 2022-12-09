@@ -158,10 +158,12 @@ export const QuestionPage = () => {
                         ? ""
                         : answer.isCorrect && answer.isChecked
                         ? "right"
-                        : !answer.isCorrect && answer.isChecked?"wrong":""
+                        : !answer.isCorrect && answer.isChecked
+                        ? "wrong"
+                        : ""
                     }`}
                   >
-                    <label htmlFor={`${index1}${index2}`}>
+                    <label htmlFor={`${index1}${index2}`} className={answer.isChecked&&!quizCompleted?"checked":""}>
                       {answer.answer}
                     </label>
                     <div className="answer-state-container">

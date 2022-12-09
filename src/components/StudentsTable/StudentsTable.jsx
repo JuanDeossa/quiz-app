@@ -10,8 +10,10 @@ import { RiDeleteBin6Line, RiEyeLine } from "react-icons/ri";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useContext } from "react";
 import { ModalContext } from "../../context/ModalContext";
+import { color } from "@mui/system";
 
 export const StudentsTable = () => {
+  const emptyTable = Array(3).fill(null);
   const { setOpenModal, setData } = useContext(ModalContext);
   const [studentsDB, setStudentsDB] = useLocalStorage("studentsDB", []);
 
@@ -56,6 +58,7 @@ export const StudentsTable = () => {
         xs: "14px",
         sm: "16px",
       },
+      minHeight: "47px !important",
     },
   };
 
@@ -120,6 +123,24 @@ export const StudentsTable = () => {
                     </TableCell>
                   </TableRow>
                 ))}
+            {emptyTable.map((e, i) => (
+              <TableRow key={i}>
+                <TableCell sx={cellStyles.value}></TableCell>
+                <TableCell
+                  align="center"
+                  sx={{ ...cellStyles.value, color: "white" }}
+                >
+                  .
+                </TableCell>
+                <TableCell
+                  className={`table-data state`}
+                  align="center"
+                  sx={cellStyles.value}
+                ></TableCell>
+                <TableCell align="center" sx={cellStyles.value}></TableCell>
+                <TableCell align="center" sx={cellStyles.value}></TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

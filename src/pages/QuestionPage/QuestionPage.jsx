@@ -154,7 +154,11 @@ export const QuestionPage = () => {
                   <div
                     key={index2}
                     className={`answer-contanier ${
-                      !quizCompleted ? "" : answer.isCorrect ? "right" : "wrong"
+                      !quizCompleted
+                        ? ""
+                        : answer.isCorrect && answer.isChecked
+                        ? "right"
+                        : !answer.isCorrect && answer.isChecked?"wrong":""
                     }`}
                   >
                     <label htmlFor={`${index1}${index2}`}>

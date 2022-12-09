@@ -1,6 +1,6 @@
 import "./style/index.css";
 import { StudentsTable } from "../../components/StudentsTable/StudentsTable";
-import { DetailModal } from "../../components/DetailModal/DetailModal";
+import { DetailModal } from "../../components/Modals/DetailModal";
 import { Button } from "../../components/Button/Button";
 
 export const ProfessorPage = () => {

@@ -1,6 +1,5 @@
 import "./style/index.css";
 import { useContext, useEffect, useRef, useState } from "react";
-import { SubmitButton } from "../../components/SubmitButton/SubmitButton";
 import { DropDown } from "../../components/DropDown/DropDown";
 import { getCategoriesFromApi, difficulties } from "../../services/getOptions";
 import { getQuizURl } from "../../services/getQuizURL";
@@ -9,15 +8,17 @@ import { QuestionsAmountSelector } from "../../components/QuestionsAmountSelecto
 import { DataContext } from "../../context/DataContext";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Button } from "../../components/Button/Button";
-import { ModalContext, ModalProvider } from "../../context/ModalContext";
-import { ValidationModal } from "../../components/ValidationModal/ValidationModal";
+import { ModalContext } from "../../context/ModalContext";
+import { ValidationModal } from "../../components/Modals/ValidationModal";
+import { modalMessages } from "../../components/Modals/modalMessages";
 
 export const StudentConfigPage = () => {
   const { setOpenModal2 } = useContext(ModalContext);
   const [categories, setCategories] = useState([]);
   const [amount, setAmount] = useState(1);
-  const [studentName, setStudentName] = useLocalStorage("studentName", null);
-  const [studentsDB, setStudentsDB] = useLocalStorage("studentsDB", []);
+  const [message, setMessage] = useState("");
+  const [, setStudentName] = useLocalStorage("studentName", null);
+  const [studentsDB] = useLocalStorage("studentsDB", []);
   const { loading, setLoading } = useContext(DataContext);
   const difficulties_ = Object.values(difficulties);
 
@@ -26,13 +27,18 @@ export const StudentConfigPage = () => {
   const location = useLocation();
   const { setQuestionsStarted } = useContext(DataContext);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     const formData = new FormData(form.current);
     const name = formData.get("name");
     const userExists = studentsDB.some((student) => student.name === name);
     if (!name) {
+      e.preventDefault();
+      setMessage(modalMessages.emptyName);
+      setOpenModal2((prevState) => !prevState);
       return;
     } else if (userExists) {
+      e.preventDefault();
+      setMessage(modalMessages.userExists);
       setOpenModal2((prevState) => !prevState);
       return;
     } else {
@@ -70,7 +76,7 @@ export const StudentConfigPage = () => {
 
   return (
     <div className="StudentConfigPage">
-      <ValidationModal />
+      <ValidationModal text={message} />
       <h2>Student Config</h2>
       <form action="" ref={form}>
         <DropDown title="Category" dataArray={categories} loading={loading} />
@@ -86,13 +92,9 @@ export const StudentConfigPage = () => {
             name="name"
             placeholder="Who are you ?"
             disabled={loading}
-            required
+            // required
           />
-          <SubmitButton
-            text="Start Quiz"
-            action={handleSubmit}
-            disabled={loading}
-          />
+          <button onClick={handleSubmit}>Start Quiz</button>
           <Button
             backButton={true}
             route="/"

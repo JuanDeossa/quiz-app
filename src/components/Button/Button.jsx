@@ -6,17 +6,21 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 export const Button = (props) => {
   //Props Destructuring Assignment.
   const {
-    text = "",
+    text = "Button",
     route = "",
     action = () => {},
     styles = {},
     backButton = false,
+    submitButton = false,
+    disabled = false,
   } = props;
 
   const navigate = useNavigate();
 
   return (
     <MuiButton
+      type={submitButton ? "submit" : "button"}
+      disabled={disabled}
       className="MuiButton MuiButton_"
       variant="contained"
       sx={{ ...styles, textTransform: "none" }}

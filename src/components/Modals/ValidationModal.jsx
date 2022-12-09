@@ -1,4 +1,3 @@
-import "./style/index.css";
 import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -20,8 +19,9 @@ const style = {
   p: 4,
 };
 
-export const ValidationModal = () => {
-  const { openModal2, setOpenModal2} = useContext(ModalContext);
+export const ValidationModal = (props) => {
+  const { text="No" } = props;
+  const { openModal2, setOpenModal2 } = useContext(ModalContext);
   const handleClose = () => setOpenModal2(false);
   return (
     <div>
@@ -38,7 +38,7 @@ export const ValidationModal = () => {
             component="h2"
             color="#9b0000"
           >
-            {`you already answered the test`}
+            {text}
           </Typography>
         </Box>
       </Modal>

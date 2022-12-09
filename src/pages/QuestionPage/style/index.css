@@ -44,6 +44,7 @@
   flex-direction: column;
   gap: 20px;
   width: 80%;
+  min-height: 400px;
   max-width: 600px;
   padding: 20px;
   border-radius: 20px;
@@ -65,10 +66,10 @@
   align-items: center;
 }
 .right {
-  background-color: rgb(14, 135, 78);
+  background-color: rgb(15 141 81)
 }
 .wrong {
-  background-color: rgb(201, 23, 16);
+  background-color: rgb(183 61 57);
 }
 .empty-answers-text {
   font-size: 20px;

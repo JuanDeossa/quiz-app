@@ -1,6 +1,9 @@
 import "./style/index.css";
 import { Button } from "../../components/Button/Button";
 import { Stack } from "@mui/material";
+import { AuthModal } from "../../components/Modals/AuthModal/AuthModal";
+import { ModalContext } from "../../context/ModalContext";
+import { useContext } from "react";
 
 export const HomePage = (props) => {
   const buttonStyles = {
@@ -13,6 +16,12 @@ export const HomePage = (props) => {
     flexDirection: { sm: "row" },
     justifyContent: { sm: "center" },
     gap: { xs: "25px", sm: "30px" },
+  };
+
+  const { openModal3, setOpenModal3 } = useContext(ModalContext);
+  const handleProfessorAuth = () => {
+    console.log("Auth");
+    setOpenModal3(true);
   };
 
   return (
@@ -30,9 +39,14 @@ export const HomePage = (props) => {
           width="100%"
           sx={buttonsGroupStyles}
         >
-          <Button text="Professor" route="/professor" styles={buttonStyles} />
+          <Button
+            text="Professor"
+            styles={buttonStyles}
+            action={handleProfessorAuth}
+          />
           <Button text="Student" route="/quizsettings" styles={buttonStyles} />
         </Stack>
+        <AuthModal />
       </div>
     </div>
   );

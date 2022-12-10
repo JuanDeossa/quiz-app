@@ -8,7 +8,6 @@ import { Navigate } from "react-router-dom";
 
 export const ProfessorPage = () => {
   const { logged, setLogged } = useContext(ModalContext);
-  console.log(logged);
   const LogOut = () => {
     setLogged(false);
   };

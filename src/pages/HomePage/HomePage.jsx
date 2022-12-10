@@ -20,7 +20,6 @@ export const HomePage = (props) => {
 
   const { openModal3, setOpenModal3 } = useContext(ModalContext);
   const handleProfessorAuth = () => {
-    console.log("Auth");
     setOpenModal3(true);
   };
 

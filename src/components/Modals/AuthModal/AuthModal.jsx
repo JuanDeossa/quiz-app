@@ -1,5 +1,5 @@
 import "./style.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -13,7 +13,7 @@ import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Button } from "../../Button/Button";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -31,12 +31,14 @@ const style = {
 };
 
 export const AuthModal = () => {
+  const navigate = useNavigate();
+
+  const [incorrectPassword, setIncorrectPassword] = useState(false);
+
   const [values, setValues] = useState({
     password: "",
     showPassword: false,
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -55,14 +57,36 @@ export const AuthModal = () => {
 
   const { openModal3, setOpenModal3, logged, setLogged } =
     useContext(ModalContext);
-  const handleClose = () => setOpenModal3(false);
 
-  const validatePassword = (e) => {
-    console.log(values?.password);
+  const handleClose = () => {
+    setOpenModal3(false);
+    setIncorrectPassword(false);
+  };
+
+  const validatePasswordByMouseClick = (e) => {
     if (values?.password === "abc") {
-      setLogged(true)
+      setLogged(true);
       navigate("/professor");
       setOpenModal3(false);
+      setIncorrectPassword(false);
+    } else {
+      setIncorrectPassword(true);
+    }
+  };
+
+  const validatePasswordByKeyboard = (e) => {
+    if (values?.password.length === 1) {
+      setIncorrectPassword(false);
+    }
+    if (e.code === "Enter") {
+      if (values?.password === "abc") {
+        setLogged(true);
+        navigate("/professor");
+        setOpenModal3(false);
+        setIncorrectPassword(false);
+      } else {
+        setIncorrectPassword(true);
+      }
     }
   };
 
@@ -70,7 +94,7 @@ export const AuthModal = () => {
     <div>
       <Modal
         open={openModal3}
-        // onClose={handleClose}
+        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -95,11 +119,12 @@ export const AuthModal = () => {
             variant="h4"
             component="h2"
             color="#161e8a"
+            sx={{ marginLeft: { xs: "0px", sm: "100px" } }}
           >
-            {`Password`}
+            {`Professor`}
           </Typography>
           <FormControl
-            sx={{ m: 1, width: "25ch", marginLeft: "0px" }}
+            sx={{ m: 1, width: "25ch", marginLeft: { xs: "0px", sm: "100px" } }}
             variant="outlined"
           >
             <InputLabel htmlFor="outlined-adornment-password">
@@ -123,11 +148,18 @@ export const AuthModal = () => {
                 </InputAdornment>
               }
               label="Password"
-              onKeyDown={validatePassword}
+              placeholder="try with abc"
+              onKeyDown={validatePasswordByKeyboard}
             />
-            <button onClick={validatePassword} className="password-button">
+            <button
+              onClick={validatePasswordByMouseClick}
+              className="password-button"
+            >
               Submit
             </button>
+            {incorrectPassword && (
+              <p className="incorrect-answer">Incorrect Password</p>
+            )}
           </FormControl>
         </Box>
       </Modal>
